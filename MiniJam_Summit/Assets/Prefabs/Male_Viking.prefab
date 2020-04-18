@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 2516291740443970623}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a177b0e6ff26a894180468c168e802cc, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f46a5b070df0a047ab114453b7ff552, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -154,10 +154,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraMale: {fileID: 0}
-  prebabMale: {fileID: 0}
+  RespawnParticles: {fileID: 0}
+  maleTrapdoll: {fileID: 7015357299537650137, guid: 8918735b3a49a2042868178fca43a289,
+    type: 3}
   cameraSpeed: 100
   restart: 0
   cameraReset: 0
+  respawnSpeed: 2
 --- !u!114 &9085789107703892046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,7 +719,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2516291740443990603}
-  m_LocalRotation: {x: -0.57854766, y: 0.6324858, z: -0.3525135, w: -0.37547135}
+  m_LocalRotation: {x: -0.5785476, y: 0.63248575, z: -0.35251346, w: -0.3754713}
   m_LocalPosition: {x: -0.058011726, y: -0.041914478, z: -0.07447154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2751,7 +2754,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2516291740444043193}
-  m_LocalRotation: {x: 0.6324858, y: 0.57854766, z: 0.37547132, w: -0.3525135}
+  m_LocalRotation: {x: 0.63248575, y: 0.57854766, z: 0.37547126, w: -0.3525135}
   m_LocalPosition: {x: -0.05801534, y: -0.04191418, z: 0.0744715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
