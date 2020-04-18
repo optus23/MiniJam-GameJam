@@ -6,6 +6,7 @@ public class CameraLerpEvent : MonoBehaviour
 {
     MaleMovement maleMov;
     public GameObject MaleCharacter;
+    MaleRestart maleReset;
 
     Quaternion AfterTutorialMale;
     Quaternion Init;
@@ -18,13 +19,15 @@ public class CameraLerpEvent : MonoBehaviour
     void Start()
     {
         maleMov = MaleCharacter.GetComponent<MaleMovement>();
+        maleReset = MaleCharacter.GetComponent<MaleRestart>();
+
         Init = transform.rotation;
         AfterTutorialMale = Quaternion.EulerAngles(0, 90, 0);
     }
 
     void Update()
     {
-        if(!maleMov.inGame && !maleMov.goUp)
+        if(!maleMov.inGame && !maleMov.goUp && !maleReset.cameraReset)
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
