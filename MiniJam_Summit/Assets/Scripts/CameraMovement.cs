@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    MaleMovement maleMov;
+    public GameObject MaleCharacter;
+
     Vector3 initialPosition;
     public float speed = 0;
 
     void Start()
     {
+        maleMov = MaleCharacter.GetComponent<MaleMovement>();
         initialPosition = transform.position;
     }
 
@@ -16,6 +20,9 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(initialPosition.x, transform.position.y, initialPosition.z);
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+
+        //  Go up
+        if (maleMov.inGame && maleMov.goUp)
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }

@@ -37009,7 +37009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5985b98b623439442b1111b849b1edc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  MaleCharacter: {fileID: 1807518099}
+  speed: 2
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37022,7 +37023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fa67d48f7c37046ab28e95dca53610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaleCharacter: {fileID: 1807518099}
   speed: 1.5
+  startLerp: 0
 --- !u!1001 &963251510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69663,6 +69666,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1807179859}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1807518099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5575374728272870508, guid: b4eeed4becf40444d9ba812e5677da01,
+    type: 3}
+  m_PrefabInstance: {fileID: 5575374728974453870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1809551250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82647,6 +82656,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2099438301}
     m_Modifications:
+    - target: {fileID: 1270906563040688157, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: MaleCamera
+      value: 
+      objectReference: {fileID: 963194225}
+    - target: {fileID: 1270906563040688157, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5575374728272742274, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -82730,7 +82749,7 @@ PrefabInstance:
     - target: {fileID: 7770251042404592356, guid: e57741a81ea36eb4882e5b8e42d3e05e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7831588912275512454, guid: e57741a81ea36eb4882e5b8e42d3e05e,
         type: 3}
