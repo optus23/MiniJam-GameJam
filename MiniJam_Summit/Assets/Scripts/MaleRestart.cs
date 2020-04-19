@@ -39,6 +39,7 @@ public class MaleRestart : MonoBehaviour
             Destroy(deadBody, 7);
 
             transform.position = new Vector3(initialPosition.x, initialPosition.y - 2, initialPosition.z);
+            restart = false;
         }
 
         if(cameraReset)

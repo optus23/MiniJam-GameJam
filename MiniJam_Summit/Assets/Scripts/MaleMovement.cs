@@ -32,21 +32,18 @@ public class MaleMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.D) && !resetGame.restart && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
         {
             isPrepared = true;
             dodge_counter++;
             transform.Translate(Vector3.right * dodge_offset);
         }
 
-        
-
-        if(resetGame.restart)
+        if (resetGame.restart)
         {
             inGame = false;
             goUp = false;
             isPrepared = false;
-            resetGame.restart = false;
             dodge_counter = 0;
         }
 
