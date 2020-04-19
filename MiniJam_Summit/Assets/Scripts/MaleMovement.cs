@@ -11,7 +11,7 @@ public class MaleMovement : MonoBehaviour
     public GameObject FemaleCharacter;
     FemaleMovement femaleMov;
 
-    Transform hit;
+    //Transform hit;
     //public GameObject obstacles;
     //List<Transform> rocks;
 
