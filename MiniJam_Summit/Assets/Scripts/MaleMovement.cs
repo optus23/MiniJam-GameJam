@@ -11,6 +11,10 @@ public class MaleMovement : MonoBehaviour
     public GameObject FemaleCharacter;
     FemaleMovement femaleMov;
 
+    Transform hit;
+    public GameObject obstacles;
+    List<Transform> rocks;
+
     MaleRestart resetGame;
 
     public float speed = 0;
@@ -27,7 +31,15 @@ public class MaleMovement : MonoBehaviour
         femaleMov = FemaleCharacter.GetComponent<FemaleMovement>();
         lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<MaleRestart>();
+        hit = transform.Find("Hit");
+        if (hit == null)
+            Debug.Log("OH NO");
 
+        rocks = new List<Transform>();
+        foreach (Transform i in obstacles.transform)
+        {
+            rocks.Add(i);
+        }
     }
 
     void Update()
@@ -63,6 +75,23 @@ public class MaleMovement : MonoBehaviour
             {
                 dodge_counter++;
                 transform.Translate(Vector3.right * dodge_offset);
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Transform to_del = null;
+                foreach(var r in rocks)
+                {
+                    if (r.GetComponent<BoxCollider>().bounds.Contains(hit.position))
+                    {
+                        to_del = r;
+                    }
+                }
+                if (to_del != null)
+                {
+                    rocks.Remove(to_del);
+                    Destroy(to_del.gameObject);
+                }
             }
         }
 
