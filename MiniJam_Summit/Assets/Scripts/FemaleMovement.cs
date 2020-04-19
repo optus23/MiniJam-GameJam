@@ -67,7 +67,14 @@ public class FemaleMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter <= 1)
             {
                 dodge_counter++;
-                anim.SetBool("ChangeDirectionLeft", true);
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopLeft") || this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopRight"))
+                {
+                    anim.SetBool("DobleDodgeLeft", true);
+                }
+                else
+                {
+                    anim.SetBool("ChangeDirectionLeft", true);
+                }
 
                 //  Active Dodge movement
                 actualPosition = transform.position;
@@ -79,6 +86,7 @@ public class FemaleMovement : MonoBehaviour
             {
                 femaleDodgeLeft = false;
                 anim.SetBool("ChangeDirectionLeft", false);
+                anim.SetBool("DobleDodgeLeft", false);
             }
             else if(femaleDodgeLeft)
             {
@@ -88,8 +96,16 @@ public class FemaleMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter >= 1)
             {
-                anim.SetBool("ChangeDirectionRight", true);
                 dodge_counter--;
+
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopRight") || this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopLeft"))
+                {
+                    anim.SetBool("DobleDodgeRight", true);
+                }
+                else
+                {
+                    anim.SetBool("ChangeDirectionRight", true);
+                }
 
                 //  Active Dodge movement
                 actualPosition = transform.position;
@@ -100,6 +116,8 @@ public class FemaleMovement : MonoBehaviour
             {
                 femaleDodgeRight = false;
                 anim.SetBool("ChangeDirectionRight", false);
+                anim.SetBool("DobleDodgeRight", false);
+
             }
             else if (femaleDodgeRight)
             {
