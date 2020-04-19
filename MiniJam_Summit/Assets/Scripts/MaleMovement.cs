@@ -20,12 +20,18 @@ public class MaleMovement : MonoBehaviour
     public GameObject prefab_particles;
 
     public float speed = 0;
+    public float dodge_speed = 0;
     public float dodge_offset = 0;
     int dodge_counter = 0;
 
     public bool goUp = false;
     public bool inGame = false;
     public bool isPrepared = false;
+
+    Vector3 actualPosition;
+    bool maleDodgeLeft = false;
+    bool maleDodgeRight = false;
+    bool dodging = false;
 
     Animator anim;
     void Start()
@@ -67,16 +73,50 @@ public class MaleMovement : MonoBehaviour
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
             
             //  Simple Dodge to test
-            if (Input.GetKeyDown(KeyCode.A) && dodge_counter >= 1)
+            if (Input.GetKeyDown(KeyCode.A) && dodge_counter >= 1 && !dodging)
             {
+                dodging = true;
                 dodge_counter--;
-                transform.Translate(Vector3.right * -dodge_offset);
+                anim.SetBool("DodgeLeft", true);
+
+                //  Active Dodge movement
+                actualPosition = transform.position;
+                maleDodgeLeft = true;
             }
-            if (Input.GetKeyDown(KeyCode.D) && dodge_counter <= 1)
+            //  Dodge movement loop LEFT
+            if (maleDodgeLeft && actualPosition.x <= transform.position.x - dodge_offset)
             {
-                dodge_counter++;
-                transform.Translate(Vector3.right * dodge_offset);
+                dodging = false;
+                maleDodgeLeft = false;
+                anim.SetBool("DodgeLeft", false);
             }
+            else if (maleDodgeLeft)
+            {
+                transform.Translate(Vector3.right * -dodge_speed * Time.deltaTime);
+            }
+
+            if (Input.GetKeyDown(KeyCode.D) && dodge_counter <= 1 && !dodging)
+            {
+                dodging = true;
+                dodge_counter++;
+                anim.SetBool("DodgeRight", true);
+
+                //  Active Dodge movement
+                actualPosition = transform.position;
+                maleDodgeRight = true;
+            }
+            //  Dodge movement loop RIGHT
+            if (maleDodgeRight && actualPosition.x >= transform.position.x + dodge_offset)
+            {
+                dodging = false;
+                maleDodgeRight = false;
+                anim.SetBool("DodgeRight", false);
+            }
+            else if (maleDodgeRight)
+            {
+                transform.Translate(Vector3.right * +dodge_speed * Time.deltaTime);
+            }
+
 
             if (Input.GetKeyDown(KeyCode.W))
             {
