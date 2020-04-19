@@ -23,6 +23,9 @@ public class FemaleMovement : MonoBehaviour
 
     Animator anim;
 
+    float startAttackTime;
+
+
     void Start()
     {
         maleMov = MaleCharacter.GetComponent<MaleMovement>();
@@ -63,9 +66,11 @@ public class FemaleMovement : MonoBehaviour
             {
                 dodge_counter++;
                 transform.Translate(Vector3.right * -dodge_offset);
+                anim.SetBool("ChangeDirectionLeft", true);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter >= 1)
             {
+                anim.SetBool("ChangeDirectionRight", true);
                 dodge_counter--;
                 transform.Translate(Vector3.right * dodge_offset);
             }
@@ -88,6 +93,13 @@ public class FemaleMovement : MonoBehaviour
                 
             }
         }
+
+
+        if(Time.time - startAttackTime > anim.GetCurrentAnimatorStateInfo(0).length && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+
+        }
+       
 
     }
 }
