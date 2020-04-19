@@ -47,22 +47,22 @@ public class CameraLerpEvent : MonoBehaviour
     {
         if(!maleMov.inGame && !maleMov.goUp && !maleReset.cameraReset && !femaleMov.inGame && !femaleMov.goUp)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) && !maleMov.isPrepared)
             {
                 startMaleLerp = true;
 
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D) && !maleMov.isPrepared)
             {
                 startMaleLerp = false;
 
             }
 
-            if(Input.GetKeyDown(KeyCode.RightArrow))
+            if(Input.GetKeyDown(KeyCode.RightArrow) && !femaleMov.isPrepared)
             {
                 startFemaleLerp = true;
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && !femaleMov.isPrepared)
             {
                 startFemaleLerp = false;
             }

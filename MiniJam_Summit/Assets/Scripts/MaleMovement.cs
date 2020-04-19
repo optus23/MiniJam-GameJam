@@ -32,20 +32,14 @@ public class MaleMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && dodge_counter == 0 && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.D) && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
         {
-            isPrepared = true; 
+            isPrepared = true;
+            dodge_counter++;
+            transform.Translate(Vector3.right * dodge_offset);
         }
 
-        if(isPrepared)
-        {
-            // Go up
-            if (femaleMov.isPrepared)
-            {
-                inGame = true;
-                goUp = true;
-            }
-        }
+        
 
         if(resetGame.restart)
         {
@@ -75,6 +69,21 @@ public class MaleMovement : MonoBehaviour
             }
         }
 
-
+        if (isPrepared)
+        {
+            if(Input.GetKeyDown(KeyCode.A) && dodge_counter == 1)
+            {
+                isPrepared = false;
+                dodge_counter--;
+                transform.Translate(Vector3.right * -dodge_offset);
+            }
+            // Go up
+            if (femaleMov.isPrepared)
+            {
+                inGame = true;
+                goUp = true;
+                
+            }
+        }
     }
 }

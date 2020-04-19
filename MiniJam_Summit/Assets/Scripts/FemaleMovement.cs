@@ -34,21 +34,14 @@ public class FemaleMovement : MonoBehaviour
     void Update()
     {
         // Prepared
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter == 0 && !lerpEvent.startFemaleLerp && FemaleCamera.transform.rotation.eulerAngles.y <= 190 && !resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !inGame && dodge_counter == 0 && !lerpEvent.startFemaleLerp && FemaleCamera.transform.rotation.eulerAngles.y <= 190 && !resetGame.cameraReset)
         {
             isPrepared = true;
+            dodge_counter++;
+            transform.Translate(Vector3.right * -dodge_offset);
         }
 
-        if(isPrepared)
-        {
-            // Go up
-            if (maleMov.isPrepared)
-            {
-                inGame = true;
-                goUp = true;
-            }
-        }
-
+       
         if (resetGame.restart)
         {
             inGame = false;
@@ -77,6 +70,22 @@ public class FemaleMovement : MonoBehaviour
             }
         }
 
+        if (isPrepared)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter == 1)
+            {
+                isPrepared = false;
+                dodge_counter--;
+                transform.Translate(Vector3.right * dodge_offset);
+            }
+            // Go up
+            if (maleMov.isPrepared)
+            {
+                inGame = true;
+                goUp = true;
+                
+            }
+        }
 
     }
 }

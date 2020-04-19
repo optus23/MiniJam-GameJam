@@ -29,6 +29,11 @@ public class CameraMovement : MonoBehaviour
 
         //  Go up
         if (maleMov.inGame && maleMov.goUp && femaleMov.inGame && femaleMov.goUp)
+        {
             transform.Translate(Vector3.up * speed * Time.deltaTime);
+            femaleMov.isPrepared = false;
+            maleMov.isPrepared = false;
+        }
+            
     }
 }
