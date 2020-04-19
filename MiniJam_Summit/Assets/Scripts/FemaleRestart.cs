@@ -12,6 +12,9 @@ public class FemaleRestart : MonoBehaviour
     public bool cameraReset;
     public float respawnSpeed;
     bool respawned = false;
+
+    public GameObject MaleCharacter;
+    MaleRestart maleRestart;
     //public Animator respawnAnimation;
 
     float timer_camera_dead = 1.0f;
@@ -22,6 +25,7 @@ public class FemaleRestart : MonoBehaviour
 
     void Start()
     {
+        maleRestart = MaleCharacter.GetComponent<MaleRestart>();
         initialPosition = transform.position;
         initialCameraPosition = CameraFemale.transform.position;
         RespawnParticles.SetActive(false);
@@ -36,6 +40,7 @@ public class FemaleRestart : MonoBehaviour
 
             transform.position = new Vector3(initialPosition.x, initialPosition.y - 2, initialPosition.z);
         }
+
 
         if (cameraReset)
         {
@@ -68,14 +73,19 @@ public class FemaleRestart : MonoBehaviour
         }
     }
 
+    public void ResetLevel()
+    {
+        restart = true;
+        cameraReset = true;
+        respawned = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Obstacle")
         {
-            restart = true;
-            cameraReset = true;
-            respawned = false;
-
+            ResetLevel();
+            maleRestart.ResetLevel();
         }
     }
 }

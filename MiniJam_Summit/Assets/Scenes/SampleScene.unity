@@ -18578,19 +18578,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6922407860847760160}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &477418425
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477418420}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.42, y: 1.63, z: 1.23}
-  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!1001 &479522067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84127,6 +84114,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2516291740453391457, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6f46a5b070df0a047ab114453b7ff552, type: 2}
     - target: {fileID: 8049093375719242180, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
       propertyPath: CameraMale
@@ -84137,26 +84129,21 @@ PrefabInstance:
       propertyPath: RespawnParticles
       value: 
       objectReference: {fileID: 211727357}
-    - target: {fileID: 8049093375719242187, guid: b4eeed4becf40444d9ba812e5677da01,
+    - target: {fileID: 8049093375719242180, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
-      propertyPath: m_Size.y
-      value: 1.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 8049093375719242187, guid: b4eeed4becf40444d9ba812e5677da01,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 9085789107703892046, guid: b4eeed4becf40444d9ba812e5677da01,
-        type: 3}
-      propertyPath: MaleCamera
+      propertyPath: FemaleCharacter
       value: 
-      objectReference: {fileID: 963194225}
+      objectReference: {fileID: 477418420}
     - target: {fileID: 9085789107703892046, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
       propertyPath: CameraManager
       value: 
       objectReference: {fileID: 1808060452}
+    - target: {fileID: 9085789107703892046, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: MaleCamera
+      value: 
+      objectReference: {fileID: 963194225}
     - target: {fileID: 9085789107703892046, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
       propertyPath: FemaleCharacter
@@ -84191,6 +84178,10 @@ PrefabInstance:
       propertyPath: RespawnParticles
       value: 
       objectReference: {fileID: 339507113}
+    - target: {fileID: 477418423, guid: e57741a81ea36eb4882e5b8e42d3e05e, type: 3}
+      propertyPath: MaleCharacter
+      value: 
+      objectReference: {fileID: 1515368450}
     - target: {fileID: 7770251042404592356, guid: e57741a81ea36eb4882e5b8e42d3e05e,
         type: 3}
       propertyPath: m_Name

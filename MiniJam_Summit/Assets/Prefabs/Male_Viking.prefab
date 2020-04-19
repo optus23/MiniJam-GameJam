@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 2516291740443970623}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a177b0e6ff26a894180468c168e802cc, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6f46a5b070df0a047ab114453b7ff552, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -161,6 +161,7 @@ MonoBehaviour:
   restart: 0
   cameraReset: 0
   respawnSpeed: 2
+  FemaleCharacter: {fileID: 0}
 --- !u!114 &9085789107703892046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,11 +174,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1194c1eb2e5134ab5a797fc1b2c24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraManager: {fileID: 0}
   MaleCamera: {fileID: 0}
+  FemaleCharacter: {fileID: 0}
   speed: 2
   dodge_offset: 2.5
   goUp: 0
   inGame: 0
+  isPrepared: 0
 --- !u!54 &4189321207842108275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -205,8 +209,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42, y: 2.27, z: 1.23}
-  m_Center: {x: 0, y: 0.63, z: 0}
+  m_Size: {x: 0.42, y: 1.63, z: 1.23}
+  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!1 &2516291740443971195
 GameObject:
   m_ObjectHideFlags: 0
