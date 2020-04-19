@@ -77,7 +77,14 @@ public class MaleMovement : MonoBehaviour
             {
                 dodging = true;
                 dodge_counter--;
-                anim.SetBool("DodgeLeft", true);
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopLeft") || this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopRight"))
+                {
+                    anim.SetBool("DobleDodgeLeft", true);
+                }
+                else
+                {
+                    anim.SetBool("DodgeLeft", true);
+                }
 
                 //  Active Dodge movement
                 actualPosition = transform.position;
@@ -89,6 +96,7 @@ public class MaleMovement : MonoBehaviour
                 dodging = false;
                 maleDodgeLeft = false;
                 anim.SetBool("DodgeLeft", false);
+                anim.SetBool("DobleDodgeLeft", false);
             }
             else if (maleDodgeLeft)
             {
@@ -99,7 +107,17 @@ public class MaleMovement : MonoBehaviour
             {
                 dodging = true;
                 dodge_counter++;
-                anim.SetBool("DodgeRight", true);
+
+                if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopRight") || this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopLeft"))
+                {
+                    anim.SetBool("DobleDodgeRight", true);
+                }
+                else
+                {
+                    anim.SetBool("DodgeRight", true);
+                }
+
+                    
 
                 //  Active Dodge movement
                 actualPosition = transform.position;
@@ -111,6 +129,7 @@ public class MaleMovement : MonoBehaviour
                 dodging = false;
                 maleDodgeRight = false;
                 anim.SetBool("DodgeRight", false);
+                anim.SetBool("DobleDodgeRight", false);
             }
             else if (maleDodgeRight)
             {
