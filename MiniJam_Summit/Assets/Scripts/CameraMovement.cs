@@ -6,13 +6,19 @@ public class CameraMovement : MonoBehaviour
 {
     MaleMovement maleMov;
     public GameObject MaleCharacter;
+    FemaleMovement femaleMov;
+    public GameObject FemaleCharacter;
 
     Vector3 initialPosition;
     public float speed = 0;
 
     void Start()
     {
-        maleMov = MaleCharacter.GetComponent<MaleMovement>();
+        if(MaleCharacter.TryGetComponent<MaleMovement>(out maleMov))
+        {}
+        if (FemaleCharacter.TryGetComponent<FemaleMovement>(out femaleMov))
+        {}
+
         initialPosition = transform.position;
     }
 
@@ -22,7 +28,7 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(initialPosition.x, transform.position.y, initialPosition.z);
 
         //  Go up
-        if (maleMov.inGame && maleMov.goUp)
+        if (maleMov.inGame && maleMov.goUp && femaleMov.inGame && femaleMov.goUp)
             transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }

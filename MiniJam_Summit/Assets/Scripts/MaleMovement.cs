@@ -5,7 +5,11 @@ using UnityEngine;
 public class MaleMovement : MonoBehaviour
 {
     CameraLerpEvent lerpEvent;
+    public GameObject CameraManager;
     public GameObject MaleCamera;
+
+    public GameObject FemaleCharacter;
+    FemaleMovement femaleMov;
 
     MaleRestart resetGame;
 
@@ -15,12 +19,13 @@ public class MaleMovement : MonoBehaviour
 
     public bool goUp = false;
     public bool inGame = false;
-
+    public bool isPrepared = false;
 
 
     void Start()
     {
-        lerpEvent = MaleCamera.GetComponent<CameraLerpEvent>();
+        femaleMov = FemaleCharacter.GetComponent<FemaleMovement>();
+        lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<MaleRestart>();
 
     }
@@ -29,13 +34,24 @@ public class MaleMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D) && dodge_counter == 0 && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
         {
-            inGame = true;
-            goUp = true;
+            isPrepared = true; 
         }
+
+        if(isPrepared)
+        {
+            // Go up
+            if (femaleMov.isPrepared)
+            {
+                inGame = true;
+                goUp = true;
+            }
+        }
+
         if(resetGame.restart)
         {
             inGame = false;
             goUp = false;
+            isPrepared = false;
             resetGame.restart = false;
             dodge_counter = 0;
         }

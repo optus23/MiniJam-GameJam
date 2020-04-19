@@ -2785,12 +2785,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7015357299537828407}
   - component: {fileID: 7015357299547070855}
-  - component: {fileID: 3171725516243391522}
-  - component: {fileID: 4442538541243098536}
   - component: {fileID: 8760435015159602837}
   - component: {fileID: 3171725516243391533}
   m_Layer: 0
-  m_Name: Male_Viking 1
+  m_Name: MaleTrapdoll
   m_TagString: MaleViking
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2837,40 +2835,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3171725516243391522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7015357299537650137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db03a5f2d243e8c48980b9505f5cfbf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraMale: {fileID: 0}
-  prebabMale: {fileID: 0}
-  cameraSpeed: 100
-  restart: 0
-  cameraReset: 0
---- !u!114 &4442538541243098536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7015357299537650137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1194c1eb2e5134ab5a797fc1b2c24f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaleCamera: {fileID: 0}
-  speed: 2
-  dodge_offset: 2.5
-  goUp: 0
-  inGame: 0
 --- !u!54 &8760435015159602837
 Rigidbody:
   m_ObjectHideFlags: 0

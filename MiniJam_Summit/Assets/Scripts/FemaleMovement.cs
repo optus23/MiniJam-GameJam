@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class FemaleMovement : MonoBehaviour
 {
-    //CameraLerpEvent lerpEvent;
-    //public GameObject FemaleCamera;
+    CameraLerpEvent lerpEvent;
+    public GameObject CameraManager;
+    public GameObject FemaleCamera;
 
-    //MaleRestart resetGame;
+    public GameObject MaleCharacter;
+    MaleMovement maleMov;
+
+    FemaleRestart resetGame;
 
     public float speed = 0;
     public float dodge_offset = 0;
@@ -15,30 +19,44 @@ public class FemaleMovement : MonoBehaviour
 
     public bool goUp = false;
     public bool inGame = false;
+    public bool isPrepared = false;
 
 
 
     void Start()
     {
-        //lerpEvent = FemaleCamera.GetComponent<CameraLerpEvent>();
-        //resetGame = GetComponent<MaleRestart>();
+        maleMov = MaleCharacter.GetComponent<MaleMovement>();
+        lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
+        resetGame = GetComponent<FemaleRestart>();
 
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter == 0 /*&& !lerpEvent.startLerp*/ /*&& FemaleCamera.transform.rotation.eulerAngles.y >= 170*/ /*&& !resetGame.cameraReset*/)
+        // Prepared
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter == 0 && !lerpEvent.startFemaleLerp && FemaleCamera.transform.rotation.eulerAngles.y <= 190 && !resetGame.cameraReset)
         {
-            inGame = true;
-            goUp = true;
+            isPrepared = true;
         }
-        //if (resetGame.restart)
-        //{
-        //    inGame = false;
-        //    goUp = false;
-        //    resetGame.restart = false;
-        //    dodge_counter = 0;
-        //}
+
+        if(isPrepared)
+        {
+            // Go up
+            if (maleMov.isPrepared)
+            {
+                inGame = true;
+                goUp = true;
+            }
+        }
+
+        if (resetGame.restart)
+        {
+            inGame = false;
+            goUp = false;
+            isPrepared = false;
+            resetGame.restart = false;
+            dodge_counter = 0;
+        }
 
         if (inGame)
         {
