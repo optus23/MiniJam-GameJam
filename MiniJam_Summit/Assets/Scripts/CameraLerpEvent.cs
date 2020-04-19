@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class CameraLerpEvent : MonoBehaviour
 {
+    public GameObject maleCamera;
+    public GameObject femaleCamera;
+
     MaleMovement maleMov;
     public GameObject MaleCharacter;
+
+    FemaleMovement femaleMov;
+    public GameObject FemaleCharacter;
+
     MaleRestart maleReset;
 
     Quaternion AfterTutorialMale;
-    Quaternion Init;
+    Quaternion AfterTutorialFemale;
+    Quaternion InitMale;
+    Quaternion InitFemale;
 
     public float speed = 0;
-    public bool startLerp = false;
+    public bool startMaleLerp = false;
+    public bool startFemaleLerp = false;
 
 
     //  The objective of this script is to Lerp camera 90º on y and Move to 0 the z position to show player the background
@@ -21,30 +31,52 @@ public class CameraLerpEvent : MonoBehaviour
         maleMov = MaleCharacter.GetComponent<MaleMovement>();
         maleReset = MaleCharacter.GetComponent<MaleRestart>();
 
-        Init = transform.rotation;
-        AfterTutorialMale = Quaternion.EulerAngles(0, 90, 0);
+        femaleMov = FemaleCharacter.GetComponent<FemaleMovement>();
+    
+
+        InitMale = maleCamera.transform.rotation;
+        AfterTutorialMale = Quaternion.EulerAngles(0, 90, 0);    
+
+        InitFemale = femaleCamera.transform.rotation;
+        AfterTutorialFemale = Quaternion.EulerAngles(0, -90, 0);
+
+
     }
 
     void Update()
     {
-        if(!maleMov.inGame && !maleMov.goUp && !maleReset.cameraReset)
+        if(!maleMov.inGame && !maleMov.goUp && !maleReset.cameraReset && !femaleMov.inGame && !femaleMov.goUp)
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                startLerp = true;
+                startMaleLerp = true;
 
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
-                startLerp = false;
+                startMaleLerp = false;
 
+            }
+
+            if(Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                startFemaleLerp = true;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                startFemaleLerp = false;
             }
         }
         
 
-        if (startLerp)
-            transform.rotation = Quaternion.Slerp(transform.rotation, AfterTutorialMale, speed * Time.deltaTime);      
-        else      
-            transform.rotation = Quaternion.Slerp(transform.rotation, Init, speed * Time.deltaTime);      
+        if (startMaleLerp)
+            maleCamera.transform.rotation = Quaternion.Slerp(maleCamera.transform.rotation, AfterTutorialMale, speed * Time.deltaTime);      
+        else
+            maleCamera.transform.rotation = Quaternion.Slerp(maleCamera.transform.rotation, InitMale, speed * Time.deltaTime);
+
+        if (startFemaleLerp)
+            femaleCamera.transform.rotation = Quaternion.Slerp(femaleCamera.transform.rotation, AfterTutorialFemale, speed * Time.deltaTime);
+        else
+            femaleCamera.transform.rotation = Quaternion.Slerp(femaleCamera.transform.rotation, InitFemale, speed * Time.deltaTime);
     }
 }

@@ -12,7 +12,9 @@ public class MaleRestart : MonoBehaviour
     public bool cameraReset;
     public float respawnSpeed;
     bool respawned = false;
-    public Animator respawnAnimation;
+    //public Animator respawnAnimation;
+
+    float timer_camera_dead = 1.0f;
 
     Vector3 initialPosition;
     Vector3 initialCameraPosition;
@@ -30,14 +32,18 @@ public class MaleRestart : MonoBehaviour
         if(restart)
         {
             GameObject deadBody = Instantiate(maleTrapdoll, transform.position, transform.rotation);
-            Destroy(deadBody, 3);
+            Destroy(deadBody, 7);
 
             transform.position = new Vector3(initialPosition.x, initialPosition.y - 2, initialPosition.z);
         }
 
         if(cameraReset)
         {
-            CameraMale.transform.position = Vector3.SmoothDamp(CameraMale.transform.position, initialCameraPosition, ref current_vel, 0.5f, cameraSpeed, Time.deltaTime);
+            
+            timer_camera_dead -= Time.deltaTime;
+            if(timer_camera_dead <= 0.0f)
+                CameraMale.transform.position = Vector3.SmoothDamp(CameraMale.transform.position, initialCameraPosition, ref current_vel, 0.5f, cameraSpeed, Time.deltaTime);
+
 
             //  Emerge character from the floor
             if (CameraMale.transform.position.y <= initialCameraPosition.y + 2f && !respawned)
@@ -45,8 +51,8 @@ public class MaleRestart : MonoBehaviour
                 transform.Translate(Vector3.up * respawnSpeed * Time.deltaTime);
                 RespawnParticles.SetActive(true);
 
-                respawnAnimation = GetComponent<Animator>();
-                respawnAnimation.Play("RespawnRotation");
+                //respawnAnimation = GetComponent<Animator>();
+                //respawnAnimation.Play("RespawnRotation");
 
                 if (transform.position.y >= initialPosition.y)
                 {
@@ -55,6 +61,7 @@ public class MaleRestart : MonoBehaviour
                     if (CameraMale.transform.position.y <= initialCameraPosition.y + 0.1f)
                     {
                         cameraReset = false;
+                        timer_camera_dead = 1.0f;
                     }
                 }
             }

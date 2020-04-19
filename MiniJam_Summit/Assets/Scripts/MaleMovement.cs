@@ -27,7 +27,7 @@ public class MaleMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && dodge_counter == 0 && !lerpEvent.startLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.D) && dodge_counter == 0 && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
         {
             inGame = true;
             goUp = true;
