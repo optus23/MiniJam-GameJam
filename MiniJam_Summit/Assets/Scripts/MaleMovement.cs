@@ -11,9 +11,8 @@ public class MaleMovement : MonoBehaviour
     public GameObject FemaleCharacter;
     FemaleMovement femaleMov;
 
-    //Transform hit;
-    //public GameObject obstacles;
-    //List<Transform> rocks;
+    public GameObject obstacles;
+    List<Transform> rocks;
 
     MaleRestart resetGame;
 
@@ -33,15 +32,11 @@ public class MaleMovement : MonoBehaviour
         resetGame = GetComponent<MaleRestart>();
         anim = GetComponent<Animator>();
 
-        //hit = transform.Find("Hit");
-        //if (hit == null)
-        //    Debug.Log("OH NO");
-
-        //rocks = new List<Transform>();
-        //foreach (Transform i in obstacles.transform)
-        //{
-        //    rocks.Add(i);
-        //}
+        rocks = new List<Transform>();
+        foreach (Transform i in obstacles.transform)
+        {
+            rocks.Add(i);
+        }
     }
 
     void Update()
@@ -80,22 +75,23 @@ public class MaleMovement : MonoBehaviour
                 transform.Translate(Vector3.right * dodge_offset);
             }
 
-            //if (Input.GetKeyDown(KeyCode.W))
-            //{
-                //Transform to_del = null;
-                //foreach(var r in rocks)
-                //{
-                //    if (r.GetComponent<BoxCollider>().bounds.Contains(hit.position))
-                //    {
-                //        to_del = r;
-                //    }
-                //}
-                //if (to_del != null)
-                //{
-                //    rocks.Remove(to_del);
-                //    Destroy(to_del.gameObject);
-                //}
-            //}
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Transform to_del = null;
+                foreach (var r in rocks)
+                {
+                    if (IsInside(r.position))
+                    {
+                        //to_del = r;
+                        Debug.Log(r.name);
+                    }
+                }
+                if (to_del != null)
+                {
+                    rocks.Remove(to_del);
+                    Destroy(to_del.gameObject);
+                }
+            }
         }
 
         if (isPrepared)
@@ -115,5 +111,23 @@ public class MaleMovement : MonoBehaviour
                 
             }
         }
+    }
+
+    bool IsInside(Vector3 pos)
+    {
+        Vector3 up_left = transform.position + new Vector3(-5f, 8f, 0f);
+        if(pos.x < up_left.x && pos.x > up_left.x - 10f)
+        {
+            if(pos.y < up_left.y && pos.y > transform.position.y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawLine(transform.position + new Vector3(-5f, 8f, 0f), transform.position + new Vector3(5f, 8f, 0f));
     }
 }
