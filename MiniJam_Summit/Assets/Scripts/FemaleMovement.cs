@@ -21,6 +21,7 @@ public class FemaleMovement : MonoBehaviour
     public bool inGame = false;
     public bool isPrepared = false;
 
+    Animator anim;
 
 
     void Start()
@@ -28,6 +29,7 @@ public class FemaleMovement : MonoBehaviour
         maleMov = MaleCharacter.GetComponent<MaleMovement>();
         lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<FemaleRestart>();
+        anim = GetComponent<Animator>();
 
     }
 
@@ -80,6 +82,7 @@ public class FemaleMovement : MonoBehaviour
             // Go up
             if (maleMov.isPrepared)
             {
+                anim.SetBool("Climb", true);
                 inGame = true;
                 goUp = true;
                 
