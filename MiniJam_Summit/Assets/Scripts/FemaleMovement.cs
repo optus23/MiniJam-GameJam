@@ -14,6 +14,7 @@ public class FemaleMovement : MonoBehaviour
     FemaleRestart resetGame;
 
     public float speed = 0;
+    public float dodge_speed = 0;
     public float dodge_offset = 0;
     int dodge_counter = 0;
 
@@ -23,8 +24,9 @@ public class FemaleMovement : MonoBehaviour
 
     Animator anim;
 
-    float startAttackTime;
-
+    bool femaleDodgeLeft = false;
+    bool femaleDodgeRight = false;
+    Vector3 actualPosition;
 
     void Start()
     {
@@ -61,19 +63,49 @@ public class FemaleMovement : MonoBehaviour
             if (goUp)
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
 
-            //  Simple Dodge to test
+            //  Dodge
             if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter <= 1)
             {
                 dodge_counter++;
-                transform.Translate(Vector3.right * -dodge_offset);
                 anim.SetBool("ChangeDirectionLeft", true);
+
+                //  Active Dodge movement
+                actualPosition = transform.position;
+                femaleDodgeLeft = true;
+
             }
+            //  Dodge movement loop LEFT
+            if (femaleDodgeLeft && actualPosition.x <= transform.position.x - dodge_offset)
+            {
+                femaleDodgeLeft = false;
+                anim.SetBool("ChangeDirectionLeft", false);
+            }
+            else if(femaleDodgeLeft)
+            {
+                transform.Translate(Vector3.right * -dodge_speed * Time.deltaTime);
+            }
+
+
             if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter >= 1)
             {
                 anim.SetBool("ChangeDirectionRight", true);
                 dodge_counter--;
-                transform.Translate(Vector3.right * dodge_offset);
+
+                //  Active Dodge movement
+                actualPosition = transform.position;
+                femaleDodgeRight = true;
             }
+            //  Dodge movement loop RIGHT
+            if (femaleDodgeRight && actualPosition.x >= transform.position.x + dodge_offset)
+            {
+                femaleDodgeRight = false;
+                anim.SetBool("ChangeDirectionRight", false);
+            }
+            else if (femaleDodgeRight)
+            {
+                transform.Translate(Vector3.right * + dodge_speed * Time.deltaTime);
+            }
+      
         }
 
         if (isPrepared)
@@ -94,12 +126,7 @@ public class FemaleMovement : MonoBehaviour
             }
         }
 
-
-        if(Time.time - startAttackTime > anim.GetCurrentAnimatorStateInfo(0).length && anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-
-        }
-       
+      
 
     }
 }
