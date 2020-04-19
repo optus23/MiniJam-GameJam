@@ -20,6 +20,8 @@ public class CameraMovement : MonoBehaviour
         {}
 
         initialPosition = transform.position;
+
+
     }
 
     // Update is called once per frame

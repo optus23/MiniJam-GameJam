@@ -8,7 +8,7 @@ public class FemaleRestart : MonoBehaviour
     public GameObject RespawnParticles;
     public GameObject femaleTrapdoll;
     public float cameraSpeed = 0;
-    public bool restart = false;
+    public bool restart_female = false;
     public bool cameraReset;
     public float respawnSpeed;
     bool respawned = false;
@@ -33,13 +33,14 @@ public class FemaleRestart : MonoBehaviour
 
     void Update()
     {
-        if (restart)
+
+        if (restart_female)
         {
             GameObject deadBody = Instantiate(femaleTrapdoll, transform.position, transform.rotation);
             Destroy(deadBody, 7);
 
             transform.position = new Vector3(initialPosition.x, initialPosition.y - 2, initialPosition.z);
-            restart = false;
+            restart_female = false;
         }
 
 
@@ -74,9 +75,9 @@ public class FemaleRestart : MonoBehaviour
         }
     }
 
-    public void ResetLevel()
+    public void ResetFemaleLevel()
     {
-        restart = true;
+        restart_female = true;
         cameraReset = true;
         respawned = false;
     }
@@ -85,8 +86,9 @@ public class FemaleRestart : MonoBehaviour
     {
         if (collision.transform.tag == "Obstacle")
         {
-            ResetLevel();
-            maleRestart.ResetLevel();
+            ResetFemaleLevel();
+            maleRestart.ResetMaleLevel();
+            restart_female = true;
         }
     }
 }

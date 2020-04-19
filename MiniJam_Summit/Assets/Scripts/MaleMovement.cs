@@ -26,8 +26,6 @@ public class MaleMovement : MonoBehaviour
     public bool isPrepared = false;
 
     Animator anim;
-
-
     void Start()
     {
         femaleMov = FemaleCharacter.GetComponent<FemaleMovement>();
@@ -48,19 +46,20 @@ public class MaleMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && !resetGame.restart && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.D) && !resetGame.restart_male && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
         {
             isPrepared = true;
             dodge_counter++;
             transform.Translate(Vector3.right * dodge_offset);
         }
 
-        if (resetGame.restart)
+        if (resetGame.restart_male)
         {
             inGame = false;
             goUp = false;
             isPrepared = false;
             dodge_counter = 0;
+            anim.SetBool("Climb", false);
         }
 
         if (inGame)

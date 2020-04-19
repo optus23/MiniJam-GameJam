@@ -24,7 +24,6 @@ public class CameraLerpEvent : MonoBehaviour
     public bool startMaleLerp = false;
     public bool startFemaleLerp = false;
 
-
     //  The objective of this script is to Lerp camera 90º on y and Move to 0 the z position to show player the background
     void Start()
     {
@@ -45,7 +44,8 @@ public class CameraLerpEvent : MonoBehaviour
 
     void Update()
     {
-        if(!maleMov.inGame && !maleMov.goUp && !maleReset.cameraReset && !femaleMov.inGame && !femaleMov.goUp)
+
+        if (!maleMov.inGame && !maleMov.goUp && !maleReset.cameraReset && !femaleMov.inGame && !femaleMov.goUp)
         {
             if (Input.GetKeyDown(KeyCode.A) && !maleMov.isPrepared)
             {
