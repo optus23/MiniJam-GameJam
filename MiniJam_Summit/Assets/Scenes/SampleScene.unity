@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 8
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8922350433fa73241aef3c0e0d5b0729, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.027781479, g: 0.044220008, b: 0.06326231, a: 1}
+  m_IndirectSpecularColor: {r: 0.36290196, g: 0.5661646, b: 0.8437123, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27832,7 +27832,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.01e-43, y: 1.01e-43, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1.4949e-41, z: 0, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -27843,13 +27843,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.9480742, y: -0.025260087, z: -0.06691005, w: 0.3099037}
   m_LocalPosition: {x: -0.02, y: 7.31, z: 19.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.75, y: -169.88501, z: -173.67801}
 --- !u!1001 &705616666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63958,6 +63958,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01027be15bbf7d24eb5b09bd16be80d3, type: 3}
+--- !u!1 &1615966620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615966621}
+  m_Layer: 0
+  m_Name: Hit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1615966621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615966620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.379, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1515539436}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1616321810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85397,6 +85427,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Male_Viking
       objectReference: {fileID: 0}
+    - target: {fileID: 2516291740444271211, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.57854766
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516291740444271211, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3525135
+      objectReference: {fileID: 0}
     - target: {fileID: 2516291740444293073, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -85456,7 +85496,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 6f46a5b070df0a047ab114453b7ff552, type: 2}
+      objectReference: {fileID: 9100000, guid: d7f44dbe8a7e763498bde7e94560dcb8, type: 2}
+    - target: {fileID: 2516291740453391457, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516291740453391457, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8049093375719242180, guid: b4eeed4becf40444d9ba812e5677da01,
         type: 3}
       propertyPath: CameraMale
@@ -85487,6 +85537,11 @@ PrefabInstance:
       propertyPath: FemaleCharacter
       value: 
       objectReference: {fileID: 477418420}
+    - target: {fileID: 9085789107703892046, guid: b4eeed4becf40444d9ba812e5677da01,
+        type: 3}
+      propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 462073428}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4eeed4becf40444d9ba812e5677da01, type: 3}
 --- !u!1001 &6922407860847760160
