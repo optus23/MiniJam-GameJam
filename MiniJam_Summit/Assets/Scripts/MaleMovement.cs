@@ -16,6 +16,9 @@ public class MaleMovement : MonoBehaviour
 
     MaleRestart resetGame;
 
+    public Transform particles;
+    public GameObject prefab_particles;
+
     public float speed = 0;
     public float dodge_offset = 0;
     int dodge_counter = 0;
@@ -77,19 +80,20 @@ public class MaleMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.W))
             {
-                Transform to_del = null;
+                List<Transform> to_del = new List<Transform>();
                 foreach (var r in rocks)
                 {
                     if (IsInside(r.position))
                     {
-                        //to_del = r;
-                        Debug.Log(r.name);
+                        to_del.Add(r);
                     }
                 }
-                if (to_del != null)
+                foreach (var d in to_del)
                 {
-                    rocks.Remove(to_del);
-                    Destroy(to_del.gameObject);
+                    GameObject o = Instantiate<GameObject>(prefab_particles, particles);
+                    o.transform.position = d.position;
+                    rocks.Remove(d);
+                    Destroy(d.gameObject);
                 }
             }
         }
@@ -115,7 +119,7 @@ public class MaleMovement : MonoBehaviour
 
     bool IsInside(Vector3 pos)
     {
-        Vector3 up_left = transform.position + new Vector3(-5f, 8f, 0f);
+        Vector3 up_left = transform.position + new Vector3(5f, 8f, 0f);
         if(pos.x < up_left.x && pos.x > up_left.x - 10f)
         {
             if(pos.y < up_left.y && pos.y > transform.position.y)
