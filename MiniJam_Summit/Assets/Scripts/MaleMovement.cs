@@ -31,6 +31,8 @@ public class MaleMovement : MonoBehaviour
     Vector3 actualPosition;
     bool maleDodgeLeft = false;
     bool maleDodgeRight = false;
+    bool StartmaleDodgeLeft = false;
+    bool StartmaleDodgeRight = false;
     bool dodging = false;
 
     Animator anim;
@@ -54,7 +56,23 @@ public class MaleMovement : MonoBehaviour
         {
             isPrepared = true;
             dodge_counter++;
-            transform.Translate(Vector3.right * dodge_offset);
+            anim.SetBool("DodgeRight", true);
+
+            //  Active Dodge movement
+            actualPosition = transform.position;
+            StartmaleDodgeRight = true;
+        }
+        //  Dodge movement loop RIGHT
+        if (StartmaleDodgeRight && actualPosition.x >= transform.position.x + dodge_offset)
+        {
+            dodging = false;
+            StartmaleDodgeRight = false;
+            anim.SetBool("DodgeRight", false);
+            anim.SetBool("DobleDodgeRight", false);
+        }
+        else if (StartmaleDodgeRight)
+        {
+            transform.Translate(Vector3.right * +dodge_speed * Time.deltaTime);
         }
 
         if (resetGame.restart_male)
