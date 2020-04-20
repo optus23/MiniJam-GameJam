@@ -44,17 +44,17 @@ public class FemaleMovement : MonoBehaviour
         lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<FemaleRestart>();
         anim = GetComponent<Animator>();
-        SearchForRocks();
+        //SearchForRocks();
     }
 
-    public void SearchForRocks()
-    {
-        rocks = new List<Transform>();
-        foreach (Transform i in obstacles.transform)
-        {
-            rocks.Add(i);
-        }
-    }
+    //public void SearchForRocks()
+    //{
+    //    rocks = new List<Transform>();
+    //    foreach (Transform i in obstacles.transform)
+    //    {
+    //        rocks.Add(i);
+    //    }
+    //}
 
     void Update()
     {
@@ -93,7 +93,10 @@ public class FemaleMovement : MonoBehaviour
             anim.SetBool("Climb", false);
             anim.SetBool("ChangeDirectionLeft", false);
             anim.SetBool("DobleDodgeLeft", false);
-
+            anim.SetBool("ChangeDirectionRight", false);
+            anim.SetBool("DobleDodgeRight", false);
+            femaleDodgeRight = false;
+            femaleDodgeLeft = false;
         }
 
         if (inGame)

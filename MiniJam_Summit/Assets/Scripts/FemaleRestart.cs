@@ -90,7 +90,6 @@ public class FemaleRestart : MonoBehaviour
         {
             ResetFemaleLevel();
             maleRestart.ResetMaleLevel();
-            restart_female = true;
             GetComponent<AudioSource>().PlayOneShot(death);
         }
     }

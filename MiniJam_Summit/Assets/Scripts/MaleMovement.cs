@@ -42,17 +42,17 @@ public class MaleMovement : MonoBehaviour
         lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<MaleRestart>();
         anim = GetComponent<Animator>();
-        SearchForRocks();
+        //SearchForRocks();
     }
 
-    public void SearchForRocks()
-    {
-        rocks = new List<Transform>();
-        foreach (Transform i in obstacles.transform)
-        {
-            rocks.Add(i);
-        }
-    }
+    //public void SearchForRocks()
+    //{
+    //    rocks = new List<Transform>();
+    //    foreach (Transform i in obstacles.transform)
+    //    {
+    //        rocks.Add(i);
+    //    }
+    //}
 
     void Update()
     {
@@ -88,6 +88,10 @@ public class MaleMovement : MonoBehaviour
             anim.SetBool("Climb", false);
             anim.SetBool("DodgeRight", false);
             anim.SetBool("DobleDodgeRight", false);
+            anim.SetBool("DodgeLeft", false);
+            anim.SetBool("DobleDodgeLeft", false);
+            maleDodgeRight = false;
+            maleDodgeLeft = false;
         }
 
         if (inGame)
