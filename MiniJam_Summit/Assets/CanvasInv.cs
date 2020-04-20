@@ -20,13 +20,14 @@ public class CanvasInv : MonoBehaviour
     {
         if (camera_bool.startMaleLerp)
         {
+            menu.SetActive(true);
             isShowing = true;
-            menu.SetActive(isShowing);
         }
-        else if(camera_bool.startMaleLerp == false)
+        else
         {
+            menu.SetActive(false);
             isShowing = false;
-            menu.SetActive(isShowing);
+
         }
     }
 }
