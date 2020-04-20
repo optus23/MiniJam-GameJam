@@ -35,6 +35,8 @@ public class FemaleMovement : MonoBehaviour
     bool StartfemaleDodgeLeft = false;
     bool StartfemaleDodgeRight = false;
     Vector3 actualPosition;
+    bool dodging = false;
+
 
     void Start()
     {
@@ -61,8 +63,6 @@ public class FemaleMovement : MonoBehaviour
         {
             isPrepared = true;
             dodge_counter++;
-            //transform.Translate(Vector3.right * -dodge_offset);
-
             anim.SetBool("ChangeDirectionLeft", true);
 
             //  Active Dodge movement
@@ -72,8 +72,11 @@ public class FemaleMovement : MonoBehaviour
         //  Dodge movement loop LEFT
         if (StartfemaleDodgeLeft && actualPosition.x <= transform.position.x - dodge_offset)
         {
+            dodging = false;
             StartfemaleDodgeLeft = false;
             anim.SetBool("ChangeDirectionLeft", false);
+            anim.SetBool("DobleDodgeLeft", false);
+
         }
         else if (StartfemaleDodgeLeft)
         {
@@ -88,6 +91,9 @@ public class FemaleMovement : MonoBehaviour
             isPrepared = false;
             dodge_counter = 0;
             anim.SetBool("Climb", false);
+            anim.SetBool("ChangeDirectionLeft", false);
+            anim.SetBool("DobleDodgeLeft", false);
+
         }
 
         if (inGame)
@@ -97,8 +103,9 @@ public class FemaleMovement : MonoBehaviour
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
 
             //  Dodge
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter <= 1)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && dodge_counter <= 1 && !dodging)
             {
+                dodging = true;
                 dodge_counter++;
                 if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopLeft") || this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopRight"))
                 {
@@ -119,6 +126,7 @@ public class FemaleMovement : MonoBehaviour
             //  Dodge movement loop LEFT
             if (femaleDodgeLeft && actualPosition.x <= transform.position.x - dodge_offset)
             {
+                dodging = false;
                 femaleDodgeLeft = false;
                 anim.SetBool("ChangeDirectionLeft", false);
                 anim.SetBool("DobleDodgeLeft", false);
@@ -129,8 +137,9 @@ public class FemaleMovement : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter >= 1)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter >= 1 && !dodging)
             {
+                dodging = true;
                 dodge_counter--;
 
                 if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopRight") || this.anim.GetCurrentAnimatorStateInfo(0).IsName("BracedHangHopLeft"))
@@ -151,6 +160,7 @@ public class FemaleMovement : MonoBehaviour
             //  Dodge movement loop RIGHT
             if (femaleDodgeRight && actualPosition.x >= transform.position.x + dodge_offset)
             {
+                dodging = false;
                 femaleDodgeRight = false;
                 anim.SetBool("ChangeDirectionRight", false);
                 anim.SetBool("DobleDodgeRight", false);

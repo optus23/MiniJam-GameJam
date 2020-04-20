@@ -86,6 +86,8 @@ public class MaleMovement : MonoBehaviour
             isPrepared = false;
             dodge_counter = 0;
             anim.SetBool("Climb", false);
+            anim.SetBool("DodgeRight", false);
+            anim.SetBool("DobleDodgeRight", false);
         }
 
         if (inGame)
