@@ -161,25 +161,25 @@ public class MaleMovement : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                List<Transform> to_del = new List<Transform>();
-                foreach (var r in rocks)
-                {
-                    if (r != null)
-                        if (IsInside(r.position))
-                        {
-                            to_del.Add(r);
-                        }
-                }
-                foreach (var d in to_del)
-                {
-                    GameObject o = Instantiate<GameObject>(prefab_particles, particles);
-                    o.transform.position = d.position;
-                    rocks.Remove(d);
-                    Destroy(d.gameObject);
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.W))
+            //{
+            //    List<Transform> to_del = new List<Transform>();
+            //    foreach (var r in rocks)
+            //    {
+            //        if (r != null)
+            //            if (IsInside(r.position))
+            //            {
+            //                to_del.Add(r);
+            //            }
+            //    }
+            //    foreach (var d in to_del)
+            //    {
+            //        GameObject o = Instantiate<GameObject>(prefab_particles, particles);
+            //        o.transform.position = d.position;
+            //        rocks.Remove(d);
+            //        Destroy(d.gameObject);
+            //    }
+            //}
         }
 
         if (isPrepared)
