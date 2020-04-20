@@ -40,7 +40,11 @@ public class MaleMovement : MonoBehaviour
         lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<MaleRestart>();
         anim = GetComponent<Animator>();
+        SearchForRocks();
+    }
 
+    public void SearchForRocks()
+    {
         rocks = new List<Transform>();
         foreach (Transform i in obstacles.transform)
         {
@@ -142,10 +146,11 @@ public class MaleMovement : MonoBehaviour
                 List<Transform> to_del = new List<Transform>();
                 foreach (var r in rocks)
                 {
-                    if (IsInside(r.position))
-                    {
-                        to_del.Add(r);
-                    }
+                    if (r != null)
+                        if (IsInside(r.position))
+                        {
+                            to_del.Add(r);
+                        }
                 }
                 foreach (var d in to_del)
                 {

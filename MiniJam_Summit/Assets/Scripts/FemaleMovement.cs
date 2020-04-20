@@ -18,6 +18,12 @@ public class FemaleMovement : MonoBehaviour
     public float dodge_offset = 0;
     int dodge_counter = 0;
 
+    public GameObject obstacles;
+    List<Transform> rocks;
+
+    public Transform particles;
+    public GameObject prefab_particles;
+
     public bool goUp = false;
     public bool inGame = false;
     public bool isPrepared = false;
@@ -36,7 +42,16 @@ public class FemaleMovement : MonoBehaviour
         lerpEvent = CameraManager.GetComponent<CameraLerpEvent>();
         resetGame = GetComponent<FemaleRestart>();
         anim = GetComponent<Animator>();
+        SearchForRocks();
+    }
 
+    public void SearchForRocks()
+    {
+        rocks = new List<Transform>();
+        foreach (Transform i in obstacles.transform)
+        {
+            rocks.Add(i);
+        }
     }
 
     void Update()
@@ -141,7 +156,27 @@ public class FemaleMovement : MonoBehaviour
             {
                 transform.Translate(Vector3.right * + dodge_speed * Time.deltaTime);
             }
-      
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                List<Transform> to_del = new List<Transform>();
+                foreach (var r in rocks)
+                {
+                    if (r != null)
+                        if (IsInside(r.position))
+                        {
+                            to_del.Add(r);
+                        }
+                }
+                foreach (var d in to_del)
+                {
+                    GameObject o = Instantiate<GameObject>(prefab_particles, particles);
+                    o.transform.position = d.position;
+                    rocks.Remove(d);
+                    Destroy(d.gameObject);
+                }
+            }
+
         }
 
         if (isPrepared)
@@ -161,8 +196,19 @@ public class FemaleMovement : MonoBehaviour
                 
             }
         }
+    }
 
-      
-
+    bool IsInside(Vector3 pos)
+    {
+        Vector3 up_left = transform.position + new Vector3(5f, 8f, 0f);
+        if (pos.x < up_left.x && pos.x > up_left.x - 10f)
+        {
+            if (pos.y < up_left.y && pos.y > transform.position.y)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
+
