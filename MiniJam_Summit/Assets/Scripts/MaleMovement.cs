@@ -107,7 +107,7 @@ public class MaleMovement : MonoBehaviour
                 {
                     anim.SetBool("DodgeLeft", true);
                 }
-
+                GetComponent<AudioSource>().Play();
                 //  Active Dodge movement
                 actualPosition = transform.position;
                 maleDodgeLeft = true;
@@ -139,7 +139,7 @@ public class MaleMovement : MonoBehaviour
                     anim.SetBool("DodgeRight", true);
                 }
 
-                    
+                GetComponent<AudioSource>().Play();
 
                 //  Active Dodge movement
                 actualPosition = transform.position;

@@ -109,6 +109,8 @@ public class FemaleMovement : MonoBehaviour
                     anim.SetBool("ChangeDirectionLeft", true);
                 }
 
+                GetComponent<AudioSource>().Play();
+
                 //  Active Dodge movement
                 actualPosition = transform.position;
                 femaleDodgeLeft = true;
@@ -139,6 +141,8 @@ public class FemaleMovement : MonoBehaviour
                 {
                     anim.SetBool("ChangeDirectionRight", true);
                 }
+
+                GetComponent<AudioSource>().Play();
 
                 //  Active Dodge movement
                 actualPosition = transform.position;
