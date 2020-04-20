@@ -13,6 +13,8 @@ public class MaleRestart : MonoBehaviour
     public float respawnSpeed;
     bool respawned = false;
 
+    public AudioClip death;
+
     public GameObject FemaleCharacter;
     FemaleRestart femaleRestart;
     //public Animator respawnAnimation;
@@ -89,6 +91,7 @@ public class MaleRestart : MonoBehaviour
         {
             ResetMaleLevel();
             femaleRestart.ResetFemaleLevel();
+            GetComponent<AudioSource>().PlayOneShot(death);
         }
     }
 }
