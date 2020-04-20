@@ -26,6 +26,8 @@ public class FemaleMovement : MonoBehaviour
 
     bool femaleDodgeLeft = false;
     bool femaleDodgeRight = false;
+    bool StartfemaleDodgeLeft = false;
+    bool StartfemaleDodgeRight = false;
     Vector3 actualPosition;
 
     void Start()
@@ -44,10 +46,26 @@ public class FemaleMovement : MonoBehaviour
         {
             isPrepared = true;
             dodge_counter++;
-            transform.Translate(Vector3.right * -dodge_offset);
+            //transform.Translate(Vector3.right * -dodge_offset);
+
+            anim.SetBool("ChangeDirectionLeft", true);
+
+            //  Active Dodge movement
+            actualPosition = transform.position;
+            StartfemaleDodgeLeft = true;
+        }
+        //  Dodge movement loop LEFT
+        if (StartfemaleDodgeLeft && actualPosition.x <= transform.position.x - dodge_offset)
+        {
+            StartfemaleDodgeLeft = false;
+            anim.SetBool("ChangeDirectionLeft", false);
+        }
+        else if (StartfemaleDodgeLeft)
+        {
+            transform.Translate(Vector3.right * -dodge_speed * Time.deltaTime);
         }
 
-       
+
         if (resetGame.restart_female)
         {
             inGame = false;
