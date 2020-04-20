@@ -77,9 +77,9 @@ public class MaleRestart : MonoBehaviour
 
     public void ResetMaleLevel()
     {
-        GameObject.Find("Obstacles").GetComponent<SaveRocks>().Restart();
-        GetComponent<MaleMovement>().SearchForRocks();
-        femaleRestart.gameObject.GetComponent<FemaleMovement>().SearchForRocks();
+        //GameObject.Find("Obstacles").GetComponent<SaveRocks>().Restart();
+        //GetComponent<MaleMovement>().SearchForRocks();
+        //femaleRestart.gameObject.GetComponent<FemaleMovement>().SearchForRocks();
         restart_male = true;
         cameraReset = true;
         respawned = false;
