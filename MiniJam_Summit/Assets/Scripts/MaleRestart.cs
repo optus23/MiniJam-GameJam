@@ -13,6 +13,8 @@ public class MaleRestart : MonoBehaviour
     public float respawnSpeed;
     bool respawned = false;
 
+    public AudioClip death;
+
     public GameObject FemaleCharacter;
     FemaleRestart femaleRestart;
     //public Animator respawnAnimation;
@@ -75,6 +77,9 @@ public class MaleRestart : MonoBehaviour
 
     public void ResetMaleLevel()
     {
+        GameObject.Find("Obstacles").GetComponent<SaveRocks>().Restart();
+        GetComponent<MaleMovement>().SearchForRocks();
+        femaleRestart.gameObject.GetComponent<FemaleMovement>().SearchForRocks();
         restart_male = true;
         cameraReset = true;
         respawned = false;
@@ -86,6 +91,7 @@ public class MaleRestart : MonoBehaviour
         {
             ResetMaleLevel();
             femaleRestart.ResetFemaleLevel();
+            GetComponent<AudioSource>().PlayOneShot(death);
         }
     }
 }
