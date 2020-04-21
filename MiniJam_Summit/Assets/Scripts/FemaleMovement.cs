@@ -59,7 +59,7 @@ public class FemaleMovement : MonoBehaviour
     void Update()
     {
         // Prepared
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !resetGame.restart_female && !inGame && dodge_counter == 0 && !lerpEvent.startFemaleLerp && FemaleCamera.transform.rotation.eulerAngles.y <= 190 && !resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !resetGame.restart_female && !inGame && dodge_counter == 0 && !lerpEvent.startFemaleLerp && FemaleCamera.transform.rotation.eulerAngles.y <= 190 && !resetGame.cameraReset && !StartfemaleDodgeRight)
         {
             isPrepared = true;
             dodge_counter++;
@@ -68,6 +68,7 @@ public class FemaleMovement : MonoBehaviour
             //  Active Dodge movement
             actualPosition = transform.position;
             StartfemaleDodgeLeft = true;
+            GetComponent<AudioSource>().Play();
         }
         //  Dodge movement loop LEFT
         if (StartfemaleDodgeLeft && actualPosition.x <= transform.position.x - dodge_offset)
@@ -206,6 +207,7 @@ public class FemaleMovement : MonoBehaviour
                 //  Active Dodge movement
                 actualPosition = transform.position;
                 StartfemaleDodgeRight = true;
+                GetComponent<AudioSource>().Play();
             }
             // Go up
             if (maleMov.isPrepared)

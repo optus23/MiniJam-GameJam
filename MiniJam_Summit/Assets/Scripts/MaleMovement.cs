@@ -56,12 +56,12 @@ public class MaleMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && !resetGame.restart_male && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset)
+        if (Input.GetKeyDown(KeyCode.D) && !resetGame.restart_male && dodge_counter == 0 && !inGame && !lerpEvent.startMaleLerp && MaleCamera.transform.rotation.eulerAngles.y >= 170 &&!resetGame.cameraReset && !StartmaleDodgeLeft)
         {
             isPrepared = true;
             dodge_counter++;
             anim.SetBool("DodgeRight", true);
-
+            GetComponent<AudioSource>().Play();
             //  Active Dodge movement
             actualPosition = transform.position;
             StartmaleDodgeRight = true;
@@ -196,6 +196,7 @@ public class MaleMovement : MonoBehaviour
                 //  Active Dodge movement
                 actualPosition = transform.position;
                 StartmaleDodgeLeft = true;
+                GetComponent<AudioSource>().Play();
             }
 
             // Go up
