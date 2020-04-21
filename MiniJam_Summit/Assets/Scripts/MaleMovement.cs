@@ -188,12 +188,16 @@ public class MaleMovement : MonoBehaviour
 
         if (isPrepared)
         {
-            if(Input.GetKeyDown(KeyCode.A) && dodge_counter == 1)
+            if(Input.GetKeyDown(KeyCode.A) && dodge_counter == 1 && !StartmaleDodgeRight)
             {
                 isPrepared = false;
                 dodge_counter--;
-                transform.Translate(Vector3.right * -dodge_offset);
+                anim.SetBool("DodgeLeft", true);
+                //  Active Dodge movement
+                actualPosition = transform.position;
+                StartmaleDodgeLeft = true;
             }
+
             // Go up
             if (femaleMov.isPrepared)
             {
@@ -202,6 +206,16 @@ public class MaleMovement : MonoBehaviour
                 goUp = true;
                 
             }
+        }
+        //  Dodge movement loop LEFT
+        if (StartmaleDodgeLeft &&  transform.position.x - dodge_offset >= actualPosition.x)
+        {
+            StartmaleDodgeLeft = false;
+            anim.SetBool("DodgeLeft", false);
+        }
+        else if (StartmaleDodgeLeft)
+        {
+            transform.Translate(Vector3.right * -dodge_speed * Time.deltaTime);
         }
     }
 

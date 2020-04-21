@@ -198,11 +198,14 @@ public class FemaleMovement : MonoBehaviour
 
         if (isPrepared)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter == 1)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && dodge_counter == 1 && !StartfemaleDodgeLeft)
             {
                 isPrepared = false;
                 dodge_counter--;
-                transform.Translate(Vector3.right * dodge_offset);
+                anim.SetBool("ChangeDirectionRight", true);
+                //  Active Dodge movement
+                actualPosition = transform.position;
+                StartfemaleDodgeRight = true;
             }
             // Go up
             if (maleMov.isPrepared)
@@ -212,6 +215,16 @@ public class FemaleMovement : MonoBehaviour
                 goUp = true;
                 
             }
+        }
+        //  Dodge movement loop LEFT
+        if (StartfemaleDodgeRight && transform.position.x + dodge_offset <= actualPosition.x)
+        {
+            StartfemaleDodgeRight = false;
+            anim.SetBool("ChangeDirectionRight", false);
+        }
+        else if (StartfemaleDodgeRight)
+        {
+            transform.Translate(Vector3.right * dodge_speed * Time.deltaTime);
         }
     }
 
